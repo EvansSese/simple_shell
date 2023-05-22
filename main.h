@@ -18,4 +18,12 @@
 
 extern char **environ;
 
+void tokenizer(char *input);
+void show_prompt(void);
+void handle_sig_int(int sig);
+void simple_execute(char *tokens_arr[], char *argv[]);
+char *path_finder();
+char *_strcat(char *file_path, char *com);
+int _strcmp(const char *str1, const char *str2);
+
 #endif
