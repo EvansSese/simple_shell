@@ -26,4 +26,4 @@ char *_strcat(char *file_path, char *com)
                 k++;
         }
         return (file_dir);
-
+}
