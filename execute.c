@@ -43,6 +43,12 @@ void simple_execute(char *tokens_arr[], char *argv[])
 		}
 		if (_strcmp(tokens_arr[i], "exit") == 0)
 			exit(EXIT_SUCCESS);
+		else if (_strcmp(tokens_arr[i], "env") == 0)
+		{
+			print_env();
+			if (!isatty(STDIN_FILENO))
+				exit(EXIT_SUCCESS);
+		}
 		else
 		{
 			child_pid = fork();
