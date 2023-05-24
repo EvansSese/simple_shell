@@ -27,5 +27,6 @@ char *_strcat(char *file_path, char *com);
 int _strcmp(const char *str1, const char *str2);
 void print_env(void);
 int _strlen(char *str);
+void exit_shell(void);
 
 #endif

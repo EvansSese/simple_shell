@@ -3,7 +3,6 @@
 char *tokens_arr[MAX_NUM_TOKENS];
 int num_tokens = 0;
 
-
 /**
  * tokenizer - Function to extract tokens
  * @input: Input string

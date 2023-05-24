@@ -42,7 +42,7 @@ void simple_execute(char *tokens_arr[], char *argv[])
 			command = tokens_arr[i];
 		}
 		if (_strcmp(tokens_arr[i], "exit") == 0)
-			exit(EXIT_SUCCESS);
+			exit_shell();
 		else if (_strcmp(tokens_arr[i], "env") == 0)
 		{
 			print_env();
