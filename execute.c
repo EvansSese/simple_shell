@@ -28,17 +28,13 @@ void simple_execute(char *tokens_arr[], char *argv[])
 		{
 			while (path_arr[k])
 			{
-				file_dir = malloc(100 * sizeof(char) + 1);
-				if (file_dir == NULL)
-					free(file_dir);
-				_strcat(path_arr[k], tokens_arr[i], file_dir);
+				file_dir = _strcat(path_arr[k], tokens_arr[i]);
 				if (access(file_dir, X_OK) == 0)
 				{
 					command = file_dir;
 					break;
 				}
 				k++;
-				free(file_dir);
 			}
 		}
 		else
@@ -52,7 +48,6 @@ void simple_execute(char *tokens_arr[], char *argv[])
 			print_env();
 			if (!isatty(STDIN_FILENO))
 			{
-				free(file_dir);
 				exit(EXIT_SUCCESS);
 			}
 		}
@@ -64,7 +59,6 @@ void simple_execute(char *tokens_arr[], char *argv[])
 				if (execve(command, tokens_arr, environ) == -1)
 				{
 					perror(argv[0]);
-					free(file_dir);
 					exit(EXIT_FAILURE);
 				}
 			}
@@ -75,10 +69,8 @@ void simple_execute(char *tokens_arr[], char *argv[])
 				wait(&status);
 				if (!isatty(STDIN_FILENO))
 				{
-					free(file_dir);
 					exit(EXIT_SUCCESS);
 				}
-				free(file_dir);
 			}
 		}
 		i++;

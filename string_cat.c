@@ -8,10 +8,13 @@
  * Return: Returns full path
  */
 
-void _strcat(char *file_path, char *com, char *file_dir)
+char *_strcat(char *file_path, char *com)
 {
 	int i = 0, j = 0, k = 0;
+	char *file_dir = malloc(100 * sizeof(char) + 1);
 
+	if (file_dir == NULL)
+		free(file_dir);
 	while (file_path[i])
 	{
 		file_dir[k] = file_path[i];
@@ -26,4 +29,5 @@ void _strcat(char *file_path, char *com, char *file_dir)
 		j++;
 		k++;
 	}
+	return (file_dir);
 }
