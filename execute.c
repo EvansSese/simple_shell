@@ -11,7 +11,7 @@ void simple_execute(char *tokens_arr[], char *argv[])
 {
 	pid_t child_pid;
 	int status, i = 0, j = 0, k = 0;
-	char *path, *path_str, *path_arr[100], *file_dir, *command;
+	char *path, *path_str, *path_arr[100], *command, *file_dir;
 
 	path = path_finder();
 	path_str = strtok(path, ":");
@@ -28,13 +28,17 @@ void simple_execute(char *tokens_arr[], char *argv[])
 		{
 			while (path_arr[k])
 			{
-				file_dir = _strcat(path_arr[k], tokens_arr[i]);
+				file_dir = malloc(100 * sizeof(char) + 1);
+				if (file_dir == NULL)
+					free(file_dir);
+				_strcat(path_arr[k], tokens_arr[i], file_dir);
 				if (access(file_dir, X_OK) == 0)
 				{
 					command = file_dir;
 					break;
 				}
 				k++;
+				free(file_dir);
 			}
 		}
 		else
@@ -47,7 +51,10 @@ void simple_execute(char *tokens_arr[], char *argv[])
 		{
 			print_env();
 			if (!isatty(STDIN_FILENO))
+			{
+				free(command);
 				exit(EXIT_SUCCESS);
+			}
 		}
 		else
 		{
@@ -55,10 +62,11 @@ void simple_execute(char *tokens_arr[], char *argv[])
 			if (child_pid == 0)
 			{
 				if (execve(command, tokens_arr, environ) == -1)
-			{
-				perror(argv[0]);
-				exit(EXIT_FAILURE);
-			}
+				{
+					perror(argv[0]);
+					free(command);
+					exit(EXIT_FAILURE);
+				}
 			}
 			else if (child_pid < 0)
 				perror(argv[0]);
@@ -66,9 +74,14 @@ void simple_execute(char *tokens_arr[], char *argv[])
 			{
 				wait(&status);
 				if (!isatty(STDIN_FILENO))
+				{
+					free(command);
 					exit(EXIT_SUCCESS);
+				}
+				free(command);
 			}
 		}
 		i++;
+		free(command);
 	}
 }
