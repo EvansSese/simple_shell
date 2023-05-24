@@ -27,5 +27,6 @@ char *_strcat(char *file_path, char *com)
 		j++;
 		k++;
 	}
+	free(file_dir);
 	return (file_dir);
 }
