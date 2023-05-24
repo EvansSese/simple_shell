@@ -68,13 +68,13 @@ int main(int argc, char *argv[])
 			int com_num = 0, j = 0;
 
 			show_prompt();
-			bytes_read = read(STDIN_FILENO, input, MAX_INPUT_SIZE);
+			bytes_read = read(0, input, MAX_INPUT_SIZE);
 			if (bytes_read == -1)
 				perror(argv[0]);
 			input[bytes_read - 1] = '\0';
 			if (feof(stdin))
 			{
-				write(STDOUT_FILENO, "\n", 2);
+				write(1, "\n", 2);
 				exit(EXIT_SUCCESS);
 			}
 			comm = strtok(input, "\n");
