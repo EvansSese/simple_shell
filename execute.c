@@ -52,7 +52,7 @@ void simple_execute(char *tokens_arr[], char *argv[])
 			print_env();
 			if (!isatty(STDIN_FILENO))
 			{
-				free(command);
+				free(file_dir);
 				exit(EXIT_SUCCESS);
 			}
 		}
@@ -64,7 +64,7 @@ void simple_execute(char *tokens_arr[], char *argv[])
 				if (execve(command, tokens_arr, environ) == -1)
 				{
 					perror(argv[0]);
-					free(command);
+					free(file_dir);
 					exit(EXIT_FAILURE);
 				}
 			}
@@ -75,13 +75,12 @@ void simple_execute(char *tokens_arr[], char *argv[])
 				wait(&status);
 				if (!isatty(STDIN_FILENO))
 				{
-					free(command);
+					free(file_dir);
 					exit(EXIT_SUCCESS);
 				}
-				free(command);
+				free(file_dir);
 			}
 		}
 		i++;
-		free(command);
 	}
 }
