@@ -6,7 +6,7 @@
  * Return: Nothing
  */
 
- void exit_shell(void)
+void exit_shell(void)
 {
 	if (!isatty(STDIN_FILENO))
 		exit(EXIT_SUCCESS);
