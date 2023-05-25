@@ -11,7 +11,7 @@ void simple_execute(char *tokens_arr[], char *argv[])
 {
 	pid_t child_pid;
 	int status, i = 0, j = 0, k = 0;
-	char *path, *path_str, *path_arr[100], *command, *file_dir;
+	char *path, *path_str, *path_arr[100], *command, file_dir[20];
 
 	path = path_finder();
 	path_str = strtok(path, ":");
@@ -28,7 +28,7 @@ void simple_execute(char *tokens_arr[], char *argv[])
 		{
 			while (path_arr[k])
 			{
-				file_dir = _strcat(path_arr[k], tokens_arr[i]);
+				_strcat(path_arr[k], tokens_arr[i], file_dir);
 				if (access(file_dir, X_OK) == 0)
 				{
 					command = file_dir;
@@ -47,9 +47,7 @@ void simple_execute(char *tokens_arr[], char *argv[])
 		{
 			print_env();
 			if (!isatty(STDIN_FILENO))
-			{
 				exit(EXIT_SUCCESS);
-			}
 		}
 		else
 		{
@@ -68,9 +66,7 @@ void simple_execute(char *tokens_arr[], char *argv[])
 			{
 				wait(&status);
 				if (!isatty(STDIN_FILENO))
-				{
 					exit(EXIT_SUCCESS);
-				}
 			}
 		}
 		i++;

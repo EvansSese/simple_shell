@@ -2,32 +2,28 @@
 
 /**
  * _strcat - Concatenates path and command
- * @file_path: Path
- * @com: Command
+ * @str1: Path
+ * @str2: Command
+ * @file_dir: file directory
  *
- * Return: Returns full path
+ * Return: Nothing
  */
 
-char *_strcat(char *file_path, char *com)
+void _strcat(const char *str1, const char *str2, char *file_dir)
 {
-	int i = 0, j = 0, k = 0;
-	char *file_dir = malloc(100 * sizeof(char) + 1);
-
-	if (file_dir == NULL)
-		free(file_dir);
-	while (file_path[i])
+	int i = 0, j = 0;
+	while (str1[i] != '\0')
 	{
-		file_dir[k] = file_path[i];
+		file_dir[i] = str1[i];
 		i++;
-		k++;
 	}
-	file_dir[k] = '/';
-	k++;
-	while (com[j])
+	file_dir[i] = '/';
+	i++;
+	while (str2[j] != '\0')
 	{
-		file_dir[k] = com[j];
+		file_dir[i] = str2[j];
+		i++;
 		j++;
-		k++;
 	}
-	return (file_dir);
+	file_dir[i] = '\0';
 }

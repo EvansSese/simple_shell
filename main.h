@@ -23,7 +23,7 @@ void show_prompt(void);
 void handle_sig_int(int sig);
 void simple_execute(char *tokens_arr[], char *argv[]);
 char *path_finder();
-char *_strcat(char *file_path, char *com);
+void _strcat(const char *str1, const char *str2, char *file_dir);
 int _strcmp(const char *str1, const char *str2);
 void print_env(void);
 int _strlen(char *str);
