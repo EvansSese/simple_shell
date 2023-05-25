@@ -62,9 +62,8 @@ int main(int argc, char *argv[])
 	{
 		while (1)
 		{
-			char input[MAX_INPUT_SIZE];
 			ssize_t bytes_read;
-			char *comm, *comm_arr[MAX_NUM_TOKENS];
+			char *comm, *comm_arr[MAX_NUM_TOKENS], input[MAX_INPUT_SIZE];
 			int com_num = 0, j = 0;
 
 			show_prompt();
