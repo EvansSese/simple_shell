@@ -11,7 +11,7 @@ void print_env(void)
 		size_t bytes_len = _strlen(*environ);
 
 		write(STDOUT_FILENO, *environ, bytes_len);
-		write(STDOUT_FILENO, "\n", 2);
+		write(STDOUT_FILENO, "\n", 1);
 		environ++;
 	}
 }

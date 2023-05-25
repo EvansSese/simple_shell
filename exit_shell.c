@@ -8,5 +8,7 @@
 
  void exit_shell(void)
 {
-                exit(EXIT_SUCCESS);
+	if (!isatty(STDIN_FILENO))
+		exit(EXIT_SUCCESS);
+	exit(EXIT_SUCCESS);
 }

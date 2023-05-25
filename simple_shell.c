@@ -33,7 +33,7 @@ void tokenizer(char *input)
 void show_prompt(void)
 {
 	if (isatty(STDIN_FILENO))
-		write(STDIN_FILENO, "$ ", 2);
+		write(STDOUT_FILENO, "$ ", 2);
 }
 
 /**
@@ -90,10 +90,10 @@ int main(int argc, char *argv[])
 				num_tokens = 0;
 				tokenizer(comm_arr[j]);
 				if (num_tokens == 0)
-			{
-				exit(EXIT_SUCCESS);
-				continue;
-			}
+				{
+					exit(EXIT_SUCCESS);
+					continue;
+				}
 				simple_execute(tokens_arr, argv);
 				j++;
 			}
