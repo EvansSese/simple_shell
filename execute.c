@@ -57,7 +57,7 @@ void simple_execute(char *tokens_arr[], char *argv[])
 				if (execve(command, tokens_arr, environ) == -1)
 				{
 					perror(argv[0]);
-					exit(EXIT_FAILURE);
+					exit(2);
 				}
 			}
 			else if (child_pid < 0)
